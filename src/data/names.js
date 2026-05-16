@@ -1,0 +1,313 @@
+// Baby names dataset with metadata
+// styles: Classic, Modern, Biblical, Nature, Mythological, Royal, Vintage
+// popularity: 1-100 = Popular, 101-500 = Uncommon, 501+ = Rare
+
+export const ORIGINS = ['Any', 'Hebrew', 'Latin', 'Greek', 'Celtic', 'English', 'French', 'Arabic', 'Nordic', 'Japanese', 'Italian', 'Slavic'];
+export const STYLES = ['Classic', 'Modern', 'Biblical', 'Nature', 'Mythological', 'Royal', 'Vintage'];
+export const POPULARITY_TIERS = {
+  Popular: [1, 100],
+  Uncommon: [101, 500],
+  Rare: [501, 9999],
+};
+
+const names = [
+  // ── BOY NAMES ──────────────────────────────────────────────────────────────
+  { id: 1, name: 'Liam', gender: 'boy', origin: 'Celtic', styles: ['Modern', 'Classic'], meaning: 'Strong-willed warrior', popularity: 1 },
+  { id: 2, name: 'Noah', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Rest and comfort', popularity: 2 },
+  { id: 3, name: 'Oliver', gender: 'boy', origin: 'Latin', styles: ['Classic'], meaning: 'Olive tree, peace', popularity: 3 },
+  { id: 4, name: 'Elijah', gender: 'boy', origin: 'Hebrew', styles: ['Biblical'], meaning: 'My God is Yahweh', popularity: 4 },
+  { id: 5, name: 'William', gender: 'boy', origin: 'English', styles: ['Classic', 'Royal'], meaning: 'Resolute protector', popularity: 5 },
+  { id: 6, name: 'James', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic', 'Royal'], meaning: 'Supplanter', popularity: 6 },
+  { id: 7, name: 'Benjamin', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Son of the right hand', popularity: 7 },
+  { id: 8, name: 'Lucas', gender: 'boy', origin: 'Latin', styles: ['Modern', 'Classic'], meaning: 'Bringer of light', popularity: 8 },
+  { id: 9, name: 'Henry', gender: 'boy', origin: 'English', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'Ruler of the home', popularity: 9 },
+  { id: 10, name: 'Alexander', gender: 'boy', origin: 'Greek', styles: ['Classic', 'Royal'], meaning: 'Defender of the people', popularity: 10 },
+  { id: 11, name: 'Mason', gender: 'boy', origin: 'English', styles: ['Modern'], meaning: 'Stone worker', popularity: 11 },
+  { id: 12, name: 'Ethan', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Strong and firm', popularity: 12 },
+  { id: 13, name: 'Daniel', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'God is my judge', popularity: 13 },
+  { id: 14, name: 'Jacob', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Supplanter', popularity: 14 },
+  { id: 15, name: 'Logan', gender: 'boy', origin: 'Celtic', styles: ['Modern'], meaning: 'Little hollow', popularity: 15 },
+  { id: 16, name: 'Sebastian', gender: 'boy', origin: 'Greek', styles: ['Classic'], meaning: 'Venerable, revered', popularity: 17 },
+  { id: 17, name: 'Aiden', gender: 'boy', origin: 'Celtic', styles: ['Modern'], meaning: 'Little fire', popularity: 18 },
+  { id: 18, name: 'Matthew', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Gift of God', popularity: 19 },
+  { id: 19, name: 'Samuel', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'God has heard', popularity: 20 },
+  { id: 20, name: 'David', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Beloved', popularity: 21 },
+  { id: 21, name: 'Joseph', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'God will increase', popularity: 22 },
+  { id: 22, name: 'Owen', gender: 'boy', origin: 'Celtic', styles: ['Classic'], meaning: 'Young warrior', popularity: 24 },
+  { id: 23, name: 'Wyatt', gender: 'boy', origin: 'English', styles: ['Modern'], meaning: 'Brave in war', popularity: 25 },
+  { id: 24, name: 'John', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'God is gracious', popularity: 26 },
+  { id: 25, name: 'Jack', gender: 'boy', origin: 'English', styles: ['Classic'], meaning: 'God is gracious', popularity: 27 },
+  { id: 26, name: 'Luke', gender: 'boy', origin: 'Greek', styles: ['Biblical', 'Classic'], meaning: 'Light-giving', popularity: 28 },
+  { id: 27, name: 'Levi', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Joined, attached', popularity: 32 },
+  { id: 28, name: 'Isaac', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'He will laugh', popularity: 33 },
+  { id: 29, name: 'Gabriel', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'God is my strength', popularity: 34 },
+  { id: 30, name: 'Julian', gender: 'boy', origin: 'Latin', styles: ['Classic'], meaning: 'Youthful', popularity: 35 },
+  { id: 31, name: 'Mateo', gender: 'boy', origin: 'Latin', styles: ['Modern', 'Classic'], meaning: 'Gift of God', popularity: 36 },
+  { id: 32, name: 'Anthony', gender: 'boy', origin: 'Latin', styles: ['Classic'], meaning: 'Priceless one', popularity: 37 },
+  { id: 33, name: 'Theodore', gender: 'boy', origin: 'Greek', styles: ['Classic', 'Vintage'], meaning: 'Gift of God', popularity: 43 },
+  { id: 34, name: 'Caleb', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Devotion to God', popularity: 44 },
+  { id: 35, name: 'Asher', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Happy and blessed', popularity: 46 },
+  { id: 36, name: 'Nathan', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Gift of God', popularity: 47 },
+  { id: 37, name: 'Thomas', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Twin', popularity: 48 },
+  { id: 38, name: 'Leo', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Modern'], meaning: 'Lion', popularity: 49 },
+  { id: 39, name: 'Isaiah', gender: 'boy', origin: 'Hebrew', styles: ['Biblical'], meaning: 'Salvation of God', popularity: 50 },
+  { id: 40, name: 'Charles', gender: 'boy', origin: 'English', styles: ['Classic', 'Royal'], meaning: 'Free man', popularity: 51 },
+  { id: 41, name: 'Hudson', gender: 'boy', origin: 'English', styles: ['Modern'], meaning: 'Son of Hudde', popularity: 53 },
+  { id: 42, name: 'Ezra', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Help', popularity: 58 },
+  { id: 43, name: 'Aaron', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Exalted, strong', popularity: 59 },
+  { id: 44, name: 'Adrian', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Modern'], meaning: 'From Hadria', popularity: 61 },
+  { id: 45, name: 'Jonathan', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Gift of God', popularity: 62 },
+  { id: 46, name: 'Jeremiah', gender: 'boy', origin: 'Hebrew', styles: ['Biblical'], meaning: 'Exalted by God', popularity: 64 },
+  { id: 47, name: 'Dominic', gender: 'boy', origin: 'Latin', styles: ['Classic'], meaning: 'Belonging to the Lord', popularity: 71 },
+  { id: 48, name: 'Ian', gender: 'boy', origin: 'Celtic', styles: ['Classic', 'Modern'], meaning: 'God is gracious', popularity: 76 },
+  { id: 49, name: 'Adam', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Earth, man', popularity: 77 },
+  { id: 50, name: 'Xavier', gender: 'boy', origin: 'Latin', styles: ['Modern'], meaning: 'New house', popularity: 78 },
+  { id: 51, name: 'Bennett', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Blessed', popularity: 83 },
+  { id: 52, name: 'Axel', gender: 'boy', origin: 'Nordic', styles: ['Modern'], meaning: 'Father of peace', popularity: 85 },
+  { id: 53, name: 'Everett', gender: 'boy', origin: 'English', styles: ['Classic', 'Vintage'], meaning: 'Brave as a wild boar', popularity: 86 },
+  { id: 54, name: 'Declan', gender: 'boy', origin: 'Celtic', styles: ['Classic', 'Modern'], meaning: 'Full of goodness', popularity: 87 },
+  { id: 55, name: 'Emmett', gender: 'boy', origin: 'English', styles: ['Classic', 'Vintage'], meaning: 'Entire, universal', popularity: 88 },
+  { id: 56, name: 'Silas', gender: 'boy', origin: 'Latin', styles: ['Biblical', 'Vintage'], meaning: 'Wood, forest', popularity: 90 },
+  { id: 57, name: 'Miles', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Modern'], meaning: 'Soldier, merciful', popularity: 91 },
+  { id: 58, name: 'Rowan', gender: 'boy', origin: 'Celtic', styles: ['Nature', 'Modern'], meaning: 'Little red one', popularity: 94 },
+  { id: 59, name: 'Luca', gender: 'boy', origin: 'Italian', styles: ['Modern'], meaning: 'Light', popularity: 95 },
+  { id: 60, name: 'Finn', gender: 'boy', origin: 'Celtic', styles: ['Nature', 'Classic'], meaning: 'Fair', popularity: 96 },
+  { id: 61, name: 'Jasper', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Vintage', 'Nature'], meaning: 'Treasurer', popularity: 97 },
+  { id: 62, name: 'Elliot', gender: 'boy', origin: 'Greek', styles: ['Classic', 'Modern'], meaning: 'The Lord is my God', popularity: 98 },
+  { id: 63, name: 'Phoenix', gender: 'boy', origin: 'Greek', styles: ['Mythological', 'Modern'], meaning: 'Dark red, reborn from ashes', popularity: 100 },
+  { id: 64, name: 'Atticus', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'From Attica', popularity: 150 },
+  { id: 65, name: 'Caspian', gender: 'boy', origin: 'Latin', styles: ['Mythological', 'Modern'], meaning: 'Of the Caspian Sea', popularity: 200 },
+  { id: 66, name: 'Magnus', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Royal'], meaning: 'Great, magnificent', popularity: 250 },
+  { id: 67, name: 'Dorian', gender: 'boy', origin: 'Greek', styles: ['Classic', 'Vintage'], meaning: 'Gift', popularity: 300 },
+  { id: 68, name: 'Hadrian', gender: 'boy', origin: 'Latin', styles: ['Royal', 'Vintage'], meaning: 'Dark-haired', popularity: 400 },
+  { id: 69, name: 'Leander', gender: 'boy', origin: 'Greek', styles: ['Mythological'], meaning: 'Lion-man', popularity: 350 },
+  { id: 70, name: 'Roland', gender: 'boy', origin: 'English', styles: ['Classic', 'Royal'], meaning: 'Famous land', popularity: 300 },
+  { id: 71, name: 'Dashiell', gender: 'boy', origin: 'French', styles: ['Vintage', 'Modern'], meaning: 'Page boy', popularity: 280 },
+  { id: 72, name: 'Evander', gender: 'boy', origin: 'Greek', styles: ['Mythological', 'Vintage'], meaning: 'Good man', popularity: 500 },
+  { id: 73, name: 'Lysander', gender: 'boy', origin: 'Greek', styles: ['Mythological'], meaning: 'Liberator', popularity: 600 },
+  { id: 74, name: 'Oberon', gender: 'boy', origin: 'English', styles: ['Mythological', 'Vintage'], meaning: 'Noble bear', popularity: 700 },
+  { id: 75, name: 'Alaric', gender: 'boy', origin: 'English', styles: ['Royal', 'Vintage'], meaning: 'Noble ruler', popularity: 450 },
+  { id: 76, name: 'Percival', gender: 'boy', origin: 'French', styles: ['Royal', 'Mythological'], meaning: 'Pierce the valley', popularity: 550 },
+  { id: 77, name: 'Thaddeus', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Vintage'], meaning: 'Courageous heart', popularity: 450 },
+  { id: 78, name: 'Sylvester', gender: 'boy', origin: 'Latin', styles: ['Nature', 'Vintage'], meaning: 'Of the forest', popularity: 500 },
+  { id: 79, name: 'Stellan', gender: 'boy', origin: 'Nordic', styles: ['Modern'], meaning: 'Calm, peaceful', popularity: 350 },
+  { id: 80, name: 'Cormac', gender: 'boy', origin: 'Celtic', styles: ['Classic', 'Vintage'], meaning: 'Charioteer', popularity: 600 },
+  { id: 81, name: 'Florian', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Nature'], meaning: 'Flowering, flourishing', popularity: 400 },
+  { id: 82, name: 'Callum', gender: 'boy', origin: 'Celtic', styles: ['Classic', 'Modern'], meaning: 'Dove', popularity: 200 },
+  { id: 83, name: 'Caelan', gender: 'boy', origin: 'Celtic', styles: ['Modern', 'Nature'], meaning: 'Slender, powerful', popularity: 500 },
+  { id: 84, name: 'Bastian', gender: 'boy', origin: 'Greek', styles: ['Modern', 'Classic'], meaning: 'Venerable', popularity: 300 },
+  { id: 85, name: 'Alistair', gender: 'boy', origin: 'Celtic', styles: ['Classic', 'Royal'], meaning: 'Defender of men', popularity: 400 },
+  { id: 86, name: 'Elio', gender: 'boy', origin: 'Italian', styles: ['Modern', 'Mythological'], meaning: 'Sun', popularity: 250 },
+  { id: 87, name: 'Arlo', gender: 'boy', origin: 'English', styles: ['Vintage', 'Modern'], meaning: 'Fortified hill', popularity: 180 },
+  { id: 88, name: 'Theo', gender: 'boy', origin: 'Greek', styles: ['Classic', 'Modern'], meaning: 'Gift of God', popularity: 120 },
+  { id: 89, name: 'Nico', gender: 'boy', origin: 'Greek', styles: ['Modern'], meaning: 'Victory of the people', popularity: 150 },
+  { id: 90, name: 'Hugo', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Mind, intellect', popularity: 160 },
+  { id: 91, name: 'Oscar', gender: 'boy', origin: 'Celtic', styles: ['Classic', 'Vintage'], meaning: 'God spear', popularity: 140 },
+  { id: 92, name: 'August', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'Great, magnificent', popularity: 130 },
+  { id: 93, name: 'Felix', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Modern'], meaning: 'Happy, fortunate', popularity: 115 },
+  { id: 94, name: 'Rafferty', gender: 'boy', origin: 'Celtic', styles: ['Vintage'], meaning: 'Prosperous', popularity: 700 },
+  { id: 95, name: 'Peregrine', gender: 'boy', origin: 'Latin', styles: ['Vintage', 'Nature'], meaning: 'Traveler, pilgrim', popularity: 650 },
+  { id: 96, name: 'Apollo', gender: 'boy', origin: 'Greek', styles: ['Mythological'], meaning: 'God of the sun', popularity: 400 },
+  { id: 97, name: 'Orion', gender: 'boy', origin: 'Greek', styles: ['Mythological', 'Modern'], meaning: 'Rising in the sky, hunter', popularity: 200 },
+  { id: 98, name: 'Caden', gender: 'boy', origin: 'Celtic', styles: ['Modern'], meaning: 'Fighter', popularity: 110 },
+  { id: 99, name: 'Cassius', gender: 'boy', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Hollow', popularity: 350 },
+  { id: 100, name: 'Phineas', gender: 'boy', origin: 'Hebrew', styles: ['Biblical', 'Vintage'], meaning: 'Oracle', popularity: 550 },
+
+  // ── GIRL NAMES ─────────────────────────────────────────────────────────────
+  { id: 201, name: 'Olivia', gender: 'girl', origin: 'Latin', styles: ['Classic'], meaning: 'Olive tree, peace', popularity: 1 },
+  { id: 202, name: 'Emma', gender: 'girl', origin: 'English', styles: ['Classic'], meaning: 'Whole, universal', popularity: 2 },
+  { id: 203, name: 'Ava', gender: 'girl', origin: 'Latin', styles: ['Modern', 'Nature'], meaning: 'Life, bird', popularity: 3 },
+  { id: 204, name: 'Charlotte', gender: 'girl', origin: 'French', styles: ['Classic', 'Royal'], meaning: 'Free woman', popularity: 4 },
+  { id: 205, name: 'Sophia', gender: 'girl', origin: 'Greek', styles: ['Classic'], meaning: 'Wisdom', popularity: 5 },
+  { id: 206, name: 'Amelia', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Work, industrious', popularity: 6 },
+  { id: 207, name: 'Isabella', gender: 'girl', origin: 'Hebrew', styles: ['Classic', 'Royal'], meaning: 'Devoted to God', popularity: 7 },
+  { id: 208, name: 'Mia', gender: 'girl', origin: 'Nordic', styles: ['Modern'], meaning: 'Mine, beloved', popularity: 8 },
+  { id: 209, name: 'Evelyn', gender: 'girl', origin: 'English', styles: ['Classic', 'Vintage'], meaning: 'Wished for child', popularity: 9 },
+  { id: 210, name: 'Harper', gender: 'girl', origin: 'English', styles: ['Modern'], meaning: 'Harp player', popularity: 10 },
+  { id: 211, name: 'Luna', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Modern', 'Mythological'], meaning: 'Moon', popularity: 11 },
+  { id: 212, name: 'Camila', gender: 'girl', origin: 'Latin', styles: ['Modern', 'Classic'], meaning: 'Young ceremonial attendant', popularity: 12 },
+  { id: 213, name: 'Elizabeth', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Royal', 'Classic'], meaning: 'My God is abundance', popularity: 14 },
+  { id: 214, name: 'Eleanor', gender: 'girl', origin: 'Greek', styles: ['Classic', 'Vintage', 'Royal'], meaning: 'Bright, shining one', popularity: 15 },
+  { id: 215, name: 'Ella', gender: 'girl', origin: 'English', styles: ['Classic', 'Modern'], meaning: 'Beautiful fairy woman', popularity: 16 },
+  { id: 216, name: 'Abigail', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: "Father's joy", popularity: 17 },
+  { id: 217, name: 'Scarlett', gender: 'girl', origin: 'English', styles: ['Modern'], meaning: 'Red', popularity: 20 },
+  { id: 218, name: 'Emily', gender: 'girl', origin: 'Latin', styles: ['Classic'], meaning: 'To strive and excel', popularity: 21 },
+  { id: 219, name: 'Aria', gender: 'girl', origin: 'Italian', styles: ['Modern'], meaning: 'Air, song', popularity: 22 },
+  { id: 220, name: 'Penelope', gender: 'girl', origin: 'Greek', styles: ['Classic', 'Mythological'], meaning: 'Weaver', popularity: 23 },
+  { id: 221, name: 'Chloe', gender: 'girl', origin: 'Greek', styles: ['Nature', 'Modern'], meaning: 'Blooming, verdant', popularity: 24 },
+  { id: 222, name: 'Layla', gender: 'girl', origin: 'Arabic', styles: ['Modern'], meaning: 'Night, dark beauty', popularity: 25 },
+  { id: 223, name: 'Mila', gender: 'girl', origin: 'Slavic', styles: ['Modern'], meaning: 'Gracious, dear', popularity: 26 },
+  { id: 224, name: 'Nora', gender: 'girl', origin: 'Celtic', styles: ['Classic', 'Vintage'], meaning: 'Honor', popularity: 27 },
+  { id: 225, name: 'Hazel', gender: 'girl', origin: 'English', styles: ['Nature', 'Vintage'], meaning: 'The hazel tree', popularity: 28 },
+  { id: 226, name: 'Lily', gender: 'girl', origin: 'English', styles: ['Nature', 'Classic'], meaning: 'Lily flower, purity', popularity: 31 },
+  { id: 227, name: 'Nova', gender: 'girl', origin: 'Latin', styles: ['Modern'], meaning: 'New, star', popularity: 32 },
+  { id: 228, name: 'Isla', gender: 'girl', origin: 'Celtic', styles: ['Nature', 'Modern'], meaning: 'Island', popularity: 33 },
+  { id: 229, name: 'Grace', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Biblical'], meaning: 'Grace of God', popularity: 34 },
+  { id: 230, name: 'Violet', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Vintage'], meaning: 'Purple flower', popularity: 35 },
+  { id: 231, name: 'Aurora', gender: 'girl', origin: 'Latin', styles: ['Mythological', 'Modern'], meaning: 'Dawn, goddess of dawn', popularity: 36 },
+  { id: 232, name: 'Zoey', gender: 'girl', origin: 'Greek', styles: ['Modern'], meaning: 'Life', popularity: 38 },
+  { id: 233, name: 'Stella', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Star', popularity: 39 },
+  { id: 234, name: 'Natalie', gender: 'girl', origin: 'Latin', styles: ['Classic'], meaning: 'Born on Christmas', popularity: 40 },
+  { id: 235, name: 'Hannah', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Grace, favor', popularity: 41 },
+  { id: 236, name: 'Lucy', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Light', popularity: 45 },
+  { id: 237, name: 'Sarah', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Princess', popularity: 46 },
+  { id: 238, name: 'Naomi', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Pleasant', popularity: 49 },
+  { id: 239, name: 'Caroline', gender: 'girl', origin: 'French', styles: ['Classic', 'Royal'], meaning: 'Free woman', popularity: 50 },
+  { id: 240, name: 'Savannah', gender: 'girl', origin: 'English', styles: ['Modern', 'Nature'], meaning: 'Treeless plain', popularity: 52 },
+  { id: 241, name: 'Audrey', gender: 'girl', origin: 'English', styles: ['Classic', 'Vintage'], meaning: 'Noble strength', popularity: 53 },
+  { id: 242, name: 'Claire', gender: 'girl', origin: 'French', styles: ['Classic'], meaning: 'Bright, clear', popularity: 56 },
+  { id: 243, name: 'Anna', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Grace', popularity: 57 },
+  { id: 244, name: 'Valentina', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Modern'], meaning: 'Strength and health', popularity: 58 },
+  { id: 245, name: 'Ruby', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Vintage', 'Modern'], meaning: 'Deep red gemstone', popularity: 59 },
+  { id: 246, name: 'Willow', gender: 'girl', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Willow tree', popularity: 62 },
+  { id: 247, name: 'Eva', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Life', popularity: 65 },
+  { id: 248, name: 'Catherine', gender: 'girl', origin: 'Greek', styles: ['Classic', 'Royal'], meaning: 'Pure', popularity: 66 },
+  { id: 249, name: 'Josephine', gender: 'girl', origin: 'Hebrew', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'God will increase', popularity: 67 },
+  { id: 250, name: 'Autumn', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Modern'], meaning: 'Fall season', popularity: 68 },
+  { id: 251, name: 'Lillian', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Classic', 'Vintage'], meaning: 'Lily', popularity: 70 },
+  { id: 252, name: 'Alice', gender: 'girl', origin: 'English', styles: ['Classic', 'Vintage'], meaning: 'Noble', popularity: 73 },
+  { id: 253, name: 'Piper', gender: 'girl', origin: 'English', styles: ['Modern'], meaning: 'Pipe player', popularity: 75 },
+  { id: 254, name: 'Jade', gender: 'girl', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Precious green stone', popularity: 77 },
+  { id: 255, name: 'Serenity', gender: 'girl', origin: 'Latin', styles: ['Modern'], meaning: 'Peaceful disposition', popularity: 79 },
+  { id: 256, name: 'Eliana', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'My God has answered', popularity: 80 },
+  { id: 257, name: 'Cora', gender: 'girl', origin: 'Greek', styles: ['Classic', 'Vintage'], meaning: 'Maiden', popularity: 81 },
+  { id: 258, name: 'Vivian', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Life', popularity: 82 },
+  { id: 259, name: 'Lydia', gender: 'girl', origin: 'Greek', styles: ['Biblical', 'Vintage'], meaning: 'From Lydia', popularity: 86 },
+  { id: 260, name: 'Athena', gender: 'girl', origin: 'Greek', styles: ['Mythological'], meaning: 'Goddess of wisdom', popularity: 87 },
+  { id: 261, name: 'Eden', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Place of delight', popularity: 89 },
+  { id: 262, name: 'Juliet', gender: 'girl', origin: 'French', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'Youthful', popularity: 91 },
+  { id: 263, name: 'Iris', gender: 'girl', origin: 'Greek', styles: ['Nature', 'Mythological', 'Classic'], meaning: 'Rainbow, goddess of rainbows', popularity: 92 },
+  { id: 264, name: 'Faith', gender: 'girl', origin: 'English', styles: ['Classic', 'Biblical'], meaning: 'Trust and belief', popularity: 93 },
+  { id: 265, name: 'Alina', gender: 'girl', origin: 'Slavic', styles: ['Modern'], meaning: 'Bright, beautiful', popularity: 95 },
+  { id: 266, name: 'June', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Vintage'], meaning: 'Youthful', popularity: 96 },
+  { id: 267, name: 'Genevieve', gender: 'girl', origin: 'French', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'Tribe woman', popularity: 97 },
+  { id: 268, name: 'Rose', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Classic', 'Vintage'], meaning: 'Rose flower', popularity: 100 },
+  { id: 269, name: 'Seraphina', gender: 'girl', origin: 'Hebrew', styles: ['Biblical', 'Mythological'], meaning: 'Ardent, fiery one', popularity: 200 },
+  { id: 270, name: 'Isadora', gender: 'girl', origin: 'Greek', styles: ['Mythological', 'Vintage'], meaning: 'Gift of Isis', popularity: 500 },
+  { id: 271, name: 'Evangeline', gender: 'girl', origin: 'Greek', styles: ['Biblical', 'Classic'], meaning: 'Bearer of good news', popularity: 250 },
+  { id: 272, name: 'Arabella', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Royal'], meaning: 'Yielding to prayer', popularity: 200 },
+  { id: 273, name: 'Cordelia', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'Daughter of the sea', popularity: 300 },
+  { id: 274, name: 'Calliope', gender: 'girl', origin: 'Greek', styles: ['Mythological'], meaning: 'Beautiful voice', popularity: 450 },
+  { id: 275, name: 'Elowen', gender: 'girl', origin: 'Celtic', styles: ['Nature', 'Modern'], meaning: 'Elm tree', popularity: 600 },
+  { id: 276, name: 'Guinevere', gender: 'girl', origin: 'Celtic', styles: ['Royal', 'Mythological'], meaning: 'White shadow, white wave', popularity: 400 },
+  { id: 277, name: 'Persephone', gender: 'girl', origin: 'Greek', styles: ['Mythological'], meaning: 'Bringer of spring', popularity: 600 },
+  { id: 278, name: 'Rosalind', gender: 'girl', origin: 'English', styles: ['Classic', 'Vintage'], meaning: 'Gentle horse', popularity: 400 },
+  { id: 279, name: 'Celestine', gender: 'girl', origin: 'Latin', styles: ['Nature', 'Classic'], meaning: 'Heavenly', popularity: 650 },
+  { id: 280, name: 'Lavinia', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Mythological'], meaning: 'Purity', popularity: 550 },
+  { id: 281, name: 'Niamh', gender: 'girl', origin: 'Celtic', styles: ['Mythological', 'Classic'], meaning: 'Bright', popularity: 500 },
+  { id: 282, name: 'Blythe', gender: 'girl', origin: 'English', styles: ['Vintage', 'Nature'], meaning: 'Happy, carefree', popularity: 600 },
+  { id: 283, name: 'Jessamine', gender: 'girl', origin: 'French', styles: ['Nature', 'Vintage'], meaning: 'Jasmine flower', popularity: 700 },
+  { id: 284, name: 'Meredith', gender: 'girl', origin: 'Celtic', styles: ['Classic', 'Vintage'], meaning: 'Great ruler', popularity: 350 },
+  { id: 285, name: 'Adelaide', gender: 'girl', origin: 'English', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'Noble kind', popularity: 170 },
+  { id: 286, name: 'Cecilia', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Vintage'], meaning: 'Blind to her own beauty', popularity: 190 },
+  { id: 287, name: 'Beatrice', gender: 'girl', origin: 'Latin', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'She who brings happiness', popularity: 210 },
+  { id: 288, name: 'Imogen', gender: 'girl', origin: 'Celtic', styles: ['Classic', 'Vintage'], meaning: 'Maiden', popularity: 300 },
+  { id: 289, name: 'Saoirse', gender: 'girl', origin: 'Celtic', styles: ['Modern', 'Nature'], meaning: 'Freedom', popularity: 400 },
+  { id: 290, name: 'Fiora', gender: 'girl', origin: 'Italian', styles: ['Nature', 'Modern'], meaning: 'Flower', popularity: 600 },
+  { id: 291, name: 'Clover', gender: 'girl', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Clover plant, lucky', popularity: 350 },
+  { id: 292, name: 'Fiona', gender: 'girl', origin: 'Celtic', styles: ['Classic', 'Modern'], meaning: 'Fair, white', popularity: 160 },
+  { id: 293, name: 'Matilda', gender: 'girl', origin: 'English', styles: ['Classic', 'Vintage', 'Royal'], meaning: 'Battle-mighty', popularity: 180 },
+  { id: 294, name: 'Phoebe', gender: 'girl', origin: 'Greek', styles: ['Classic', 'Mythological'], meaning: 'Bright and radiant', popularity: 150 },
+  { id: 295, name: 'Helena', gender: 'girl', origin: 'Greek', styles: ['Classic', 'Mythological', 'Royal'], meaning: 'Bright, shining light', popularity: 220 },
+  { id: 296, name: 'Ingrid', gender: 'girl', origin: 'Nordic', styles: ['Classic', 'Vintage'], meaning: 'Beautiful, beloved', popularity: 300 },
+  { id: 297, name: 'Astrid', gender: 'girl', origin: 'Nordic', styles: ['Classic', 'Mythological'], meaning: 'Divinely beautiful', popularity: 250 },
+  { id: 298, name: 'Freya', gender: 'girl', origin: 'Nordic', styles: ['Mythological', 'Modern'], meaning: 'Goddess of love and beauty', popularity: 130 },
+  { id: 299, name: 'Sakura', gender: 'girl', origin: 'Japanese', styles: ['Nature', 'Modern'], meaning: 'Cherry blossom', popularity: 400 },
+  { id: 300, name: 'Yuki', gender: 'girl', origin: 'Japanese', styles: ['Nature', 'Modern'], meaning: 'Snow, happiness', popularity: 450 },
+
+  // ── NEUTRAL NAMES ──────────────────────────────────────────────────────────
+  { id: 401, name: 'Avery', gender: 'neutral', origin: 'English', styles: ['Modern'], meaning: 'Ruler of the elves', popularity: 19 },
+  { id: 402, name: 'Quinn', gender: 'neutral', origin: 'Celtic', styles: ['Modern'], meaning: 'Wise, intelligent', popularity: 50 },
+  { id: 403, name: 'Jordan', gender: 'neutral', origin: 'Hebrew', styles: ['Biblical', 'Modern'], meaning: 'Flowing down', popularity: 60 },
+  { id: 404, name: 'River', gender: 'neutral', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Flowing water', popularity: 150 },
+  { id: 405, name: 'Sage', gender: 'neutral', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Wise one', popularity: 200 },
+  { id: 406, name: 'Phoenix', gender: 'neutral', origin: 'Greek', styles: ['Mythological', 'Modern'], meaning: 'Dark red, reborn from ashes', popularity: 300 },
+  { id: 407, name: 'Winter', gender: 'neutral', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Winter season', popularity: 350 },
+  { id: 408, name: 'Ember', gender: 'neutral', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Smoldering coal, spark', popularity: 250 },
+  { id: 409, name: 'Finley', gender: 'neutral', origin: 'Celtic', styles: ['Modern', 'Classic'], meaning: 'Fair warrior', popularity: 120 },
+  { id: 410, name: 'Remy', gender: 'neutral', origin: 'French', styles: ['Modern'], meaning: 'Oarsman', popularity: 180 },
+  { id: 411, name: 'Blake', gender: 'neutral', origin: 'English', styles: ['Modern'], meaning: 'Fair-haired, dark', popularity: 140 },
+  { id: 412, name: 'Drew', gender: 'neutral', origin: 'Greek', styles: ['Modern', 'Classic'], meaning: 'Manly, strong', popularity: 300 },
+  { id: 413, name: 'Hayden', gender: 'neutral', origin: 'English', styles: ['Modern'], meaning: 'Hay valley', popularity: 170 },
+  { id: 414, name: 'Kendall', gender: 'neutral', origin: 'English', styles: ['Modern'], meaning: 'Valley of the river Kent', popularity: 190 },
+  { id: 415, name: 'Harley', gender: 'neutral', origin: 'English', styles: ['Modern', 'Nature'], meaning: 'Meadow of the hares', popularity: 280 },
+  { id: 416, name: 'Marley', gender: 'neutral', origin: 'English', styles: ['Modern', 'Nature'], meaning: 'Meadow near the lake', popularity: 320 },
+  { id: 417, name: 'Peyton', gender: 'neutral', origin: 'English', styles: ['Modern'], meaning: "Fighting man's estate", popularity: 130 },
+  { id: 418, name: 'Reese', gender: 'neutral', origin: 'Celtic', styles: ['Modern'], meaning: 'Ardor, enthusiasm', popularity: 160 },
+  { id: 419, name: 'Robin', gender: 'neutral', origin: 'English', styles: ['Nature', 'Vintage'], meaning: 'Bright fame', popularity: 400 },
+  { id: 420, name: 'Sasha', gender: 'neutral', origin: 'Greek', styles: ['Modern'], meaning: 'Defending warrior', popularity: 350 },
+  { id: 421, name: 'Emerson', gender: 'neutral', origin: 'English', styles: ['Modern', 'Classic'], meaning: 'Son of Emery', popularity: 280 },
+  { id: 422, name: 'Flynn', gender: 'neutral', origin: 'Celtic', styles: ['Modern', 'Classic'], meaning: 'Son of the red-haired one', popularity: 400 },
+  { id: 423, name: 'Kai', gender: 'neutral', origin: 'Japanese', styles: ['Modern', 'Nature'], meaning: 'Sea, shell', popularity: 180 },
+  { id: 424, name: 'Lane', gender: 'neutral', origin: 'English', styles: ['Modern', 'Nature'], meaning: 'Narrow road', popularity: 350 },
+  { id: 425, name: 'Marlowe', gender: 'neutral', origin: 'English', styles: ['Modern', 'Vintage'], meaning: 'Lake remnants', popularity: 300 },
+  { id: 426, name: 'Oakley', gender: 'neutral', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Oak tree meadow', popularity: 380 },
+  { id: 427, name: 'Parker', gender: 'neutral', origin: 'English', styles: ['Modern'], meaning: 'Park keeper', popularity: 140 },
+  { id: 428, name: 'Sterling', gender: 'neutral', origin: 'English', styles: ['Modern', 'Classic'], meaning: 'Little star', popularity: 400 },
+  { id: 429, name: 'Indigo', gender: 'neutral', origin: 'Greek', styles: ['Nature', 'Modern'], meaning: 'Indian dye, deep blue', popularity: 500 },
+  { id: 430, name: 'Wren', gender: 'neutral', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Small bird', popularity: 220 },
+  { id: 431, name: 'Skye', gender: 'neutral', origin: 'Celtic', styles: ['Nature', 'Modern'], meaning: 'Island of clouds', popularity: 280 },
+  { id: 432, name: 'Atlas', gender: 'neutral', origin: 'Greek', styles: ['Mythological', 'Modern'], meaning: 'To carry, endure', popularity: 300 },
+  { id: 433, name: 'Onyx', gender: 'neutral', origin: 'Greek', styles: ['Nature', 'Modern'], meaning: 'Black gemstone', popularity: 600 },
+  { id: 434, name: 'Lark', gender: 'neutral', origin: 'English', styles: ['Nature', 'Modern'], meaning: 'Songbird, playful', popularity: 500 },
+  { id: 435, name: 'Comet', gender: 'neutral', origin: 'Latin', styles: ['Nature', 'Modern'], meaning: 'Long-haired star', popularity: 800 },
+  { id: 436, name: 'Jesse', gender: 'neutral', origin: 'Hebrew', styles: ['Biblical', 'Classic'], meaning: 'Gift, oblation', popularity: 250 },
+  { id: 437, name: 'Morgan', gender: 'neutral', origin: 'Celtic', styles: ['Classic', 'Modern'], meaning: 'Sea circle', popularity: 175 },
+  { id: 438, name: 'Spencer', gender: 'neutral', origin: 'English', styles: ['Classic', 'Modern'], meaning: 'Steward', popularity: 270 },
+  { id: 439, name: 'Alex', gender: 'neutral', origin: 'Greek', styles: ['Classic', 'Modern'], meaning: 'Defender of the people', popularity: 110 },
+  { id: 440, name: 'Charlie', gender: 'neutral', origin: 'English', styles: ['Classic', 'Modern'], meaning: 'Free man', popularity: 90 },
+];
+
+export default names;
+
+export function filterNames({ gender, origins, styles, popularity, length }) {
+  return names.filter((n) => {
+    // Gender — neutral names are always included unless filtering for a specific gender only
+    if (gender !== 'any' && n.gender !== 'neutral' && n.gender !== gender) return false;
+
+    // Origins
+    if (origins.length > 0 && !origins.includes('Any')) {
+      if (!origins.includes(n.origin)) return false;
+    }
+
+    // Styles
+    if (styles.length > 0) {
+      const hasStyle = styles.some((s) => n.styles.includes(s));
+      if (!hasStyle) return false;
+    }
+
+    // Popularity
+    if (popularity !== 'any') {
+      const [min, max] = POPULARITY_TIERS[popularity];
+      if (n.popularity < min || n.popularity > max) return false;
+    }
+
+    // Length
+    if (length !== 'any') {
+      const len = n.name.length;
+      if (length === 'short' && len > 4) return false;
+      if (length === 'medium' && (len < 5 || len > 7)) return false;
+      if (length === 'long' && len < 8) return false;
+    }
+
+    return true;
+  });
+}
+
+export function popularityLabel(rank) {
+  if (rank <= 100) return { label: 'Popular', color: 'text-emerald-600' };
+  if (rank <= 500) return { label: 'Uncommon', color: 'text-amber-600' };
+  return { label: 'Rare', color: 'text-violet-600' };
+}
+
+export function encodeNames(ids) {
+  return btoa(JSON.stringify(ids));
+}
+
+export function decodeNames(code) {
+  try {
+    return JSON.parse(atob(code));
+  } catch {
+    return null;
+  }
+}
