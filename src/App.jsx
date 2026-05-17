@@ -1,5 +1,4 @@
-import { useState, useMemo } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useState, useMemo, Component } from 'react';
 import SetupScreen from './components/SetupScreen';
 import SwipeScreen from './components/SwipeScreen';
 import ResultsScreen from './components/ResultsScreen';
@@ -7,7 +6,6 @@ import { filterNames } from './data/names';
 import './index.css';
 
 const SCREENS = { setup: 'setup', swipe: 'swipe', results: 'results' };
-const SCREEN_ORDER = { setup: 0, swipe: 1, results: 2 };
 
 function shuffle(arr) {
   const a = [...arr];
@@ -18,102 +16,86 @@ function shuffle(arr) {
   return a;
 }
 
-export default function App() {
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{ padding: 24, fontFamily: 'monospace', fontSize: 14 }}>
+          <h2 style={{ color: '#b91c1c' }}>App crashed</h2>
+          <pre style={{ whiteSpace: 'pre-wrap', color: '#374151' }}>
+            {String(this.state.error?.stack || this.state.error)}
+          </pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function AppInner() {
   const [screen, setScreen] = useState(SCREENS.setup);
-  const [prevScreen, setPrevScreen] = useState(SCREENS.setup);
   const [filters, setFilters] = useState(null);
   const [likedNames, setLikedNames] = useState([]);
-
-  const direction = SCREEN_ORDER[screen] >= SCREEN_ORDER[prevScreen] ? 1 : -1;
 
   const filteredNames = useMemo(() => {
     if (!filters) return [];
     return shuffle(filterNames(filters));
   }, [filters]);
 
-  const navigateTo = (next) => {
-    setPrevScreen(screen);
-    setScreen(next);
-  };
-
   const handleStart = (newFilters) => {
     setFilters(newFilters);
     setLikedNames([]);
-    navigateTo(SCREENS.swipe);
+    setScreen(SCREENS.swipe);
   };
 
   const handleSwipeComplete = (liked) => {
     setLikedNames(liked);
-    navigateTo(SCREENS.results);
+    setScreen(SCREENS.results);
   };
 
-  // Slide only — never start at opacity 0 so content is always visible even
-  // if the animation engine delays firing on first mount.
-  const enter = { x: direction > 0 ? '100%' : '-100%' };
-  const center = { x: 0 };
-  const exitTo = { x: direction > 0 ? '-100%' : '100%' };
-
   return (
-    <div className="max-w-md mx-auto h-screen relative overflow-hidden">
-      <AnimatePresence mode="wait" initial={false}>
-        {screen === SCREENS.setup && (
-          <motion.div
-            key="setup"
-            initial={enter}
-            animate={center}
-            exit={exitTo}
-            transition={{ type: 'tween', duration: 0.28 }}
-            className="absolute inset-0 overflow-y-auto"
-          >
-            <SetupScreen onStart={handleStart} />
-          </motion.div>
-        )}
-
-        {screen === SCREENS.swipe && (
-          <motion.div
-            key="swipe"
-            initial={enter}
-            animate={center}
-            exit={exitTo}
-            transition={{ type: 'tween', duration: 0.28 }}
-            className="absolute inset-0"
-          >
-            {filteredNames.length === 0 ? (
-              <NoNamesState onBack={() => navigateTo(SCREENS.setup)} />
-            ) : (
-              <SwipeScreen
-                names={filteredNames}
-                onComplete={handleSwipeComplete}
-                onBack={() => navigateTo(SCREENS.setup)}
-              />
-            )}
-          </motion.div>
-        )}
-
-        {screen === SCREENS.results && (
-          <motion.div
-            key="results"
-            initial={enter}
-            animate={center}
-            exit={exitTo}
-            transition={{ type: 'tween', duration: 0.28 }}
-            className="absolute inset-0 overflow-y-auto"
-          >
-            <ResultsScreen
-              likedNames={likedNames}
-              onBack={() => navigateTo(SCREENS.swipe)}
-              onRestart={() => navigateTo(SCREENS.setup)}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="max-w-md mx-auto min-h-screen relative">
+      {screen === SCREENS.setup && <SetupScreen onStart={handleStart} />}
+      {screen === SCREENS.swipe && (
+        filteredNames.length === 0 ? (
+          <NoNamesState onBack={() => setScreen(SCREENS.setup)} />
+        ) : (
+          <SwipeScreen
+            names={filteredNames}
+            onComplete={handleSwipeComplete}
+            onBack={() => setScreen(SCREENS.setup)}
+          />
+        )
+      )}
+      {screen === SCREENS.results && (
+        <ResultsScreen
+          likedNames={likedNames}
+          onBack={() => setScreen(SCREENS.swipe)}
+          onRestart={() => setScreen(SCREENS.setup)}
+        />
+      )}
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <AppInner />
+    </ErrorBoundary>
   );
 }
 
 function NoNamesState({ onBack }) {
   return (
-    <div className="flex flex-col items-center justify-center h-screen px-8 text-center">
+    <div className="flex flex-col items-center justify-center min-h-screen px-8 text-center">
       <div className="text-5xl mb-4">🔍</div>
       <h2 className="text-xl font-bold text-gray-800 mb-2">No names found</h2>
       <p className="text-gray-500 mb-6 text-sm">
