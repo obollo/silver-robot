@@ -40,7 +40,7 @@ export default function SetupScreen({ onStart }) {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh">
+    <div className="flex flex-col min-h-screen">
       {/* Header */}
       <div className="px-5 pt-10 pb-4 text-center">
         <div className="text-5xl mb-2">👶</div>

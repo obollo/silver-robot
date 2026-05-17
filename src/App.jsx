@@ -18,12 +18,6 @@ function shuffle(arr) {
   return a;
 }
 
-const slideVariants = {
-  enter: (dir) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
-};
-
 export default function App() {
   const [screen, setScreen] = useState(SCREENS.setup);
   const [prevScreen, setPrevScreen] = useState(SCREENS.setup);
@@ -53,17 +47,21 @@ export default function App() {
     navigateTo(SCREENS.results);
   };
 
+  // Slide only — never start at opacity 0 so content is always visible even
+  // if the animation engine delays firing on first mount.
+  const enter = { x: direction > 0 ? '100%' : '-100%' };
+  const center = { x: 0 };
+  const exitTo = { x: direction > 0 ? '-100%' : '100%' };
+
   return (
-    <div className="max-w-md mx-auto h-dvh relative overflow-hidden">
-      <AnimatePresence mode="wait" custom={direction}>
+    <div className="max-w-md mx-auto h-screen relative overflow-hidden">
+      <AnimatePresence mode="wait" initial={false}>
         {screen === SCREENS.setup && (
           <motion.div
             key="setup"
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
+            initial={enter}
+            animate={center}
+            exit={exitTo}
             transition={{ type: 'tween', duration: 0.28 }}
             className="absolute inset-0 overflow-y-auto"
           >
@@ -74,11 +72,9 @@ export default function App() {
         {screen === SCREENS.swipe && (
           <motion.div
             key="swipe"
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
+            initial={enter}
+            animate={center}
+            exit={exitTo}
             transition={{ type: 'tween', duration: 0.28 }}
             className="absolute inset-0"
           >
@@ -97,11 +93,9 @@ export default function App() {
         {screen === SCREENS.results && (
           <motion.div
             key="results"
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
+            initial={enter}
+            animate={center}
+            exit={exitTo}
             transition={{ type: 'tween', duration: 0.28 }}
             className="absolute inset-0 overflow-y-auto"
           >
@@ -119,7 +113,7 @@ export default function App() {
 
 function NoNamesState({ onBack }) {
   return (
-    <div className="flex flex-col items-center justify-center h-dvh px-8 text-center">
+    <div className="flex flex-col items-center justify-center h-screen px-8 text-center">
       <div className="text-5xl mb-4">🔍</div>
       <h2 className="text-xl font-bold text-gray-800 mb-2">No names found</h2>
       <p className="text-gray-500 mb-6 text-sm">

@@ -33,7 +33,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh">
+    <div className="flex flex-col min-h-screen">
       {/* Header */}
       <div className="px-5 pt-8 pb-4">
         <div className="flex items-center gap-3 mb-4">

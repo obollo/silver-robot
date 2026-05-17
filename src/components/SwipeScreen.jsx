@@ -36,7 +36,7 @@ export default function SwipeScreen({ names, onComplete, onBack }) {
   const nextName = names[index + 1];
 
   return (
-    <div className="flex flex-col h-dvh">
+    <div className="flex flex-col h-screen">
       {/* Top bar */}
       <div className="flex items-center justify-between px-5 pt-8 pb-2">
         <button
@@ -145,7 +145,7 @@ export default function SwipeScreen({ names, onComplete, onBack }) {
 
 function DoneScreen({ liked, total, onViewResults, onRestart }) {
   return (
-    <div className="flex flex-col items-center justify-center h-dvh px-6 text-center">
+    <div className="flex flex-col items-center justify-center h-screen px-6 text-center">
       <div className="text-6xl mb-4">🎉</div>
       <h2 className="text-2xl font-bold text-gray-800 mb-2">All done!</h2>
       <p className="text-gray-500 mb-2">

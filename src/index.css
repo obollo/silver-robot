@@ -11,13 +11,13 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #eff6ff 100%);
-  min-height: 100dvh;
+  min-height: 100vh;
   overscroll-behavior: none;
 }
 
 #root {
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
