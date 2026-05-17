@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import NameCard from './NameCard';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function SwipeScreen({ names, onComplete, onBack }) {
+  const { t } = useLanguage();
   const [index, setIndex] = useState(0);
   const [liked, setLiked] = useState([]);
   const [lastAction, setLastAction] = useState(null);
@@ -47,7 +49,7 @@ export default function SwipeScreen({ names, onComplete, onBack }) {
         </button>
         <div className="flex flex-col items-center">
           <span className="text-xs text-gray-400 font-medium">
-            {remaining} names left
+            {remaining} {t('swipe.namesLeft')}
           </span>
           <div className="mt-1 w-32 h-1.5 bg-gray-200 rounded-full overflow-hidden">
             <div
@@ -117,7 +119,7 @@ export default function SwipeScreen({ names, onComplete, onBack }) {
           whileTap={{ scale: 0.88 }}
           onClick={() => onComplete(liked)}
           className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center text-xl border-2 border-gray-100"
-          title="View results"
+          title={t('swipe.viewResults')}
         >
           📋
         </motion.button>
@@ -144,15 +146,18 @@ export default function SwipeScreen({ names, onComplete, onBack }) {
 }
 
 function DoneScreen({ liked, total, onViewResults, onRestart }) {
+  const { t } = useLanguage();
   return (
     <div className="flex flex-col items-center justify-center h-screen px-6 text-center">
       <div className="text-6xl mb-4">🎉</div>
-      <h2 className="text-2xl font-bold text-gray-800 mb-2">All done!</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('done.title')}</h2>
       <p className="text-gray-500 mb-2">
-        You swiped through <span className="font-semibold text-gray-700">{total}</span> names
+        {t('done.swipedThrough')}{' '}
+        <span className="font-semibold text-gray-700">{total}</span> {t('done.names')}
       </p>
       <p className="text-gray-500 mb-8">
-        and liked <span className="font-semibold text-violet-600 text-xl">{liked.length}</span>
+        {t('done.andLiked')}{' '}
+        <span className="font-semibold text-violet-600 text-xl">{liked.length}</span>
       </p>
 
       <motion.button
@@ -160,13 +165,13 @@ function DoneScreen({ liked, total, onViewResults, onRestart }) {
         onClick={onViewResults}
         className="w-full max-w-xs py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold text-lg shadow-lg shadow-violet-200 mb-3"
       >
-        View My Picks
+        {t('done.viewPicks')}
       </motion.button>
       <button
         onClick={onRestart}
         className="text-gray-400 text-sm underline underline-offset-2"
       >
-        Start over
+        {t('done.startOver')}
       </button>
     </div>
   );

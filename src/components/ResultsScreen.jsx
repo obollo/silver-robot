@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { encodeNames, decodeNames } from '../data/names';
 import names from '../data/names';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function ResultsScreen({ likedNames, onBack, onRestart }) {
-  const [view, setView] = useState('mine'); // 'mine' | 'match'
+  const { t } = useLanguage();
+  const [view, setView] = useState('mine');
   const [partnerCode, setPartnerCode] = useState('');
   const [matches, setMatches] = useState(null);
   const [codeError, setCodeError] = useState('');
   const [copied, setCopied] = useState(false);
-  const [showShareModal, setShowShareModal] = useState(false);
 
   const myCode = encodeNames(likedNames.map((n) => n.id));
 
@@ -24,7 +25,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
     setCodeError('');
     const partnerIds = decodeNames(partnerCode.trim());
     if (!partnerIds) {
-      setCodeError('Invalid code. Ask your partner to share their code again.');
+      setCodeError(t('results.invalidCode'));
       return;
     }
     const myIds = new Set(likedNames.map((n) => n.id));
@@ -43,7 +44,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
           >
             ←
           </button>
-          <h1 className="text-xl font-bold text-gray-800">Your Picks</h1>
+          <h1 className="text-xl font-bold text-gray-800">{t('results.title')}</h1>
         </div>
 
         {/* Tab bar */}
@@ -54,7 +55,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
               view === 'mine' ? 'bg-white shadow text-gray-800' : 'text-gray-400'
             }`}
           >
-            My Likes ({likedNames.length})
+            {t('results.myLikes')} ({likedNames.length})
           </button>
           <button
             onClick={() => setView('match')}
@@ -62,7 +63,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
               view === 'match' ? 'bg-white shadow text-gray-800' : 'text-gray-400'
             }`}
           >
-            Partner Match 🔗
+            {t('results.partnerMatch')} 🔗
           </button>
         </div>
       </div>
@@ -81,8 +82,8 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
               {likedNames.length === 0 ? (
                 <EmptyState
                   emoji="💔"
-                  message="You didn't like any names this round."
-                  action="Try swiping again"
+                  message={t('results.emptyMessage')}
+                  action={t('results.tryAgain')}
                   onAction={onRestart}
                 />
               ) : (
@@ -104,10 +105,8 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
             >
               {/* Step 1: Share your code */}
               <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <h3 className="font-semibold text-gray-800 mb-1">Step 1: Share your picks</h3>
-                <p className="text-xs text-gray-500 mb-3">
-                  Send this code to your partner so they can find your matches.
-                </p>
+                <h3 className="font-semibold text-gray-800 mb-1">{t('results.step1Title')}</h3>
+                <p className="text-xs text-gray-500 mb-3">{t('results.step1Desc')}</p>
                 <div className="flex gap-2">
                   <div className="flex-1 bg-gray-50 rounded-xl px-3 py-2.5 font-mono text-xs text-gray-500 break-all">
                     {myCode.substring(0, 40)}{myCode.length > 40 ? '…' : ''}
@@ -120,21 +119,19 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
                         : 'bg-violet-500 text-white'
                     }`}
                   >
-                    {copied ? '✓' : 'Copy'}
+                    {copied ? '✓' : t('results.copy')}
                   </button>
                 </div>
               </div>
 
               {/* Step 2: Enter partner's code */}
               <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <h3 className="font-semibold text-gray-800 mb-1">Step 2: Enter partner's code</h3>
-                <p className="text-xs text-gray-500 mb-3">
-                  Paste the code your partner shared with you.
-                </p>
+                <h3 className="font-semibold text-gray-800 mb-1">{t('results.step2Title')}</h3>
+                <p className="text-xs text-gray-500 mb-3">{t('results.step2Desc')}</p>
                 <textarea
                   value={partnerCode}
                   onChange={(e) => setPartnerCode(e.target.value)}
-                  placeholder="Paste partner's code here…"
+                  placeholder={t('results.pasteCodePlaceholder')}
                   className="w-full bg-gray-50 rounded-xl px-3 py-2.5 text-xs font-mono text-gray-700 border border-gray-200 focus:border-violet-400 focus:outline-none resize-none h-20"
                 />
                 {codeError && (
@@ -145,7 +142,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
                   disabled={!partnerCode.trim()}
                   className="mt-3 w-full py-3 rounded-xl bg-gradient-to-r from-violet-500 to-pink-500 text-white font-semibold text-sm disabled:opacity-40"
                 >
-                  Find Matches ✨
+                  {t('results.findMatches')}
                 </button>
               </div>
 
@@ -154,13 +151,11 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
                 <div>
                   <h3 className="font-bold text-gray-800 text-lg mb-3">
                     {matches.length === 0
-                      ? 'No matches yet 😅'
-                      : `${matches.length} match${matches.length > 1 ? 'es' : ''}! 🎉`}
+                      ? t('results.noMatches')
+                      : `${matches.length} ${matches.length > 1 ? t('results.matches') : t('results.match')}! 🎉`}
                   </h3>
                   {matches.length === 0 ? (
-                    <p className="text-sm text-gray-500">
-                      You and your partner have different taste — keep swiping!
-                    </p>
+                    <p className="text-sm text-gray-500">{t('results.differentTaste')}</p>
                   ) : (
                     <div className="space-y-2.5">
                       {matches.map((n, i) => (
@@ -181,7 +176,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
           onClick={onRestart}
           className="w-full py-3.5 rounded-2xl border-2 border-violet-300 text-violet-600 font-bold"
         >
-          Change Filters & Swipe Again
+          {t('results.changeFilters')}
         </button>
       </div>
     </div>
@@ -189,6 +184,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
 }
 
 function NameListItem({ name, rank, highlight }) {
+  const { t } = useLanguage();
   const genderEmoji = { boy: '💙', girl: '🩷', neutral: '✨' }[name.gender];
 
   return (
@@ -205,7 +201,7 @@ function NameListItem({ name, rank, highlight }) {
       <span className="text-xl">{genderEmoji}</span>
       <div className="flex-1 min-w-0">
         <p className="font-bold text-gray-800">{name.name}</p>
-        <p className="text-xs text-gray-400 truncate">{name.origin} · {name.meaning}</p>
+        <p className="text-xs text-gray-400 truncate">{t(`origin.${name.origin}`)} · {name.meaning}</p>
       </div>
       {highlight && <span className="text-base">💕</span>}
       <span className="text-xs text-gray-300 font-mono">#{rank}</span>

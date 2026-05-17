@@ -2,7 +2,7 @@
 // styles: Classic, Modern, Biblical, Nature, Mythological, Royal, Vintage
 // popularity: 1-100 = Popular, 101-500 = Uncommon, 501+ = Rare
 
-export const ORIGINS = ['Any', 'Hebrew', 'Latin', 'Greek', 'Celtic', 'English', 'French', 'Arabic', 'Nordic', 'Japanese', 'Italian', 'Slavic'];
+export const ORIGINS = ['Any', 'Hebrew', 'Latin', 'Greek', 'Celtic', 'English', 'French', 'Arabic', 'Nordic', 'Japanese', 'Italian', 'Slavic', 'Polish', 'German'];
 export const STYLES = ['Classic', 'Modern', 'Biblical', 'Nature', 'Mythological', 'Royal', 'Vintage'];
 export const POPULARITY_TIERS = {
   Popular: [1, 100],
@@ -256,6 +256,70 @@ const names = [
   { id: 438, name: 'Spencer', gender: 'neutral', origin: 'English', styles: ['Classic', 'Modern'], meaning: 'Steward', popularity: 270 },
   { id: 439, name: 'Alex', gender: 'neutral', origin: 'Greek', styles: ['Classic', 'Modern'], meaning: 'Defender of the people', popularity: 110 },
   { id: 440, name: 'Charlie', gender: 'neutral', origin: 'English', styles: ['Classic', 'Modern'], meaning: 'Free man', popularity: 90 },
+
+  // ── POLISH BOY NAMES ───────────────────────────────────────────────────────
+  { id: 501, name: 'Antoni', gender: 'boy', origin: 'Polish', styles: ['Classic'], meaning: 'Priceless one', popularity: 50 },
+  { id: 502, name: 'Jakub', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Supplanter', popularity: 40 },
+  { id: 503, name: 'Jan', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'God is gracious', popularity: 60 },
+  { id: 504, name: 'Aleksander', gender: 'boy', origin: 'Polish', styles: ['Classic', 'Royal'], meaning: 'Defender of mankind', popularity: 70 },
+  { id: 505, name: 'Franciszek', gender: 'boy', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Free man, Frenchman', popularity: 120 },
+  { id: 506, name: 'Szymon', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'God has heard', popularity: 90 },
+  { id: 507, name: 'Filip', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Lover of horses', popularity: 80 },
+  { id: 508, name: 'Mikołaj', gender: 'boy', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Victory of the people', popularity: 110 },
+  { id: 509, name: 'Wojciech', gender: 'boy', origin: 'Polish', styles: ['Classic', 'Royal'], meaning: 'Joyful warrior', popularity: 200 },
+  { id: 510, name: 'Stanisław', gender: 'boy', origin: 'Polish', styles: ['Classic', 'Royal', 'Vintage'], meaning: 'To become glorious', popularity: 180 },
+  { id: 511, name: 'Kazimierz', gender: 'boy', origin: 'Polish', styles: ['Royal', 'Vintage'], meaning: 'Famous destroyer of peace', popularity: 350 },
+  { id: 512, name: 'Krzysztof', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Bearer of Christ', popularity: 150 },
+  { id: 513, name: 'Mateusz', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Gift of God', popularity: 100 },
+  { id: 514, name: 'Michał', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Who is like God', popularity: 75 },
+  { id: 515, name: 'Piotr', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Rock, stone', popularity: 130 },
+  { id: 516, name: 'Paweł', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Small, humble', popularity: 140 },
+  { id: 517, name: 'Łukasz', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Bringer of light', popularity: 95 },
+  { id: 518, name: 'Marcin', gender: 'boy', origin: 'Polish', styles: ['Classic'], meaning: 'Of Mars, warlike', popularity: 160 },
+  { id: 519, name: 'Tomasz', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Twin', popularity: 170 },
+  { id: 520, name: 'Maciej', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Gift of God', popularity: 180 },
+  { id: 521, name: 'Kacper', gender: 'boy', origin: 'Polish', styles: ['Classic'], meaning: 'Treasurer', popularity: 85 },
+  { id: 522, name: 'Bartosz', gender: 'boy', origin: 'Polish', styles: ['Classic'], meaning: 'Son of furrows', popularity: 220 },
+  { id: 523, name: 'Igor', gender: 'boy', origin: 'Polish', styles: ['Classic'], meaning: 'Warrior of peace', popularity: 250 },
+  { id: 524, name: 'Damian', gender: 'boy', origin: 'Polish', styles: ['Classic'], meaning: 'To tame, subdue', popularity: 170 },
+  { id: 525, name: 'Miłosz', gender: 'boy', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Gracious, lovely', popularity: 280 },
+  { id: 526, name: 'Lech', gender: 'boy', origin: 'Polish', styles: ['Mythological', 'Royal', 'Vintage'], meaning: 'Legendary founder of Poland', popularity: 500 },
+  { id: 527, name: 'Bolesław', gender: 'boy', origin: 'Polish', styles: ['Royal', 'Vintage'], meaning: 'Great glory', popularity: 600 },
+  { id: 528, name: 'Zbigniew', gender: 'boy', origin: 'Polish', styles: ['Vintage'], meaning: 'To dispel anger', popularity: 550 },
+  { id: 529, name: 'Władysław', gender: 'boy', origin: 'Polish', styles: ['Royal', 'Vintage'], meaning: 'To rule with glory', popularity: 600 },
+  { id: 530, name: 'Adam', gender: 'boy', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Earth, man', popularity: 55 },
+
+  // ── POLISH GIRL NAMES ──────────────────────────────────────────────────────
+  { id: 601, name: 'Zofia', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Wisdom', popularity: 30 },
+  { id: 602, name: 'Julia', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Youthful', popularity: 25 },
+  { id: 603, name: 'Zuzanna', gender: 'girl', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Lily', popularity: 35 },
+  { id: 604, name: 'Maja', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Mythological'], meaning: 'Goddess of spring', popularity: 28 },
+  { id: 605, name: 'Hanna', gender: 'girl', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Grace, favor', popularity: 45 },
+  { id: 606, name: 'Lena', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Bright, shining light', popularity: 50 },
+  { id: 607, name: 'Aleksandra', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Royal'], meaning: 'Defender of mankind', popularity: 60 },
+  { id: 608, name: 'Maria', gender: 'girl', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Beloved, beautiful', popularity: 70 },
+  { id: 609, name: 'Natalia', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Born on Christmas', popularity: 65 },
+  { id: 610, name: 'Wiktoria', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Royal'], meaning: 'Victory', popularity: 55 },
+  { id: 611, name: 'Emilia', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Eager, industrious', popularity: 75 },
+  { id: 612, name: 'Antonina', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Priceless one', popularity: 110 },
+  { id: 613, name: 'Helena', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Mythological'], meaning: 'Bright, shining light', popularity: 90 },
+  { id: 614, name: 'Ewa', gender: 'girl', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Life', popularity: 95 },
+  { id: 615, name: 'Magdalena', gender: 'girl', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'From Magdala', popularity: 120 },
+  { id: 616, name: 'Joanna', gender: 'girl', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'God is gracious', popularity: 130 },
+  { id: 617, name: 'Agnieszka', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Pure, holy', popularity: 160 },
+  { id: 618, name: 'Katarzyna', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Pure', popularity: 100 },
+  { id: 619, name: 'Małgorzata', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Pearl', popularity: 180 },
+  { id: 620, name: 'Barbara', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Foreign, traveler', popularity: 200 },
+  { id: 621, name: 'Anna', gender: 'girl', origin: 'Polish', styles: ['Biblical', 'Classic'], meaning: 'Grace', popularity: 40 },
+  { id: 622, name: 'Karolina', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Royal'], meaning: 'Free woman', popularity: 80 },
+  { id: 623, name: 'Justyna', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Just, fair', popularity: 200 },
+  { id: 624, name: 'Patrycja', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'Noble', popularity: 220 },
+  { id: 625, name: 'Weronika', gender: 'girl', origin: 'Polish', styles: ['Classic'], meaning: 'True image', popularity: 150 },
+  { id: 626, name: 'Kinga', gender: 'girl', origin: 'Polish', styles: ['Royal', 'Vintage'], meaning: 'Brave warrior', popularity: 300 },
+  { id: 627, name: 'Jadwiga', gender: 'girl', origin: 'Polish', styles: ['Royal', 'Vintage'], meaning: 'Safety in battle', popularity: 500 },
+  { id: 628, name: 'Halina', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Calm, tranquil', popularity: 400 },
+  { id: 629, name: 'Bożena', gender: 'girl', origin: 'Polish', styles: ['Vintage'], meaning: 'Divine, blessed', popularity: 550 },
+  { id: 630, name: 'Iwona', gender: 'girl', origin: 'Polish', styles: ['Classic', 'Vintage'], meaning: 'Yew tree, archer', popularity: 350 },
 ];
 
 export default names;

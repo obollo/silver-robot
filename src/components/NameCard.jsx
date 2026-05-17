@@ -1,15 +1,18 @@
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { popularityLabel } from '../data/names';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const SWIPE_THRESHOLD = 100;
 
 export default function NameCard({ name, onLike, onDislike }) {
+  const { t } = useLanguage();
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-250, 250], [-18, 18]);
   const likeOpacity = useTransform(x, [20, SWIPE_THRESHOLD], [0, 1]);
   const dislikeOpacity = useTransform(x, [-SWIPE_THRESHOLD, -20], [1, 0]);
 
-  const { label: popLabel, color: popColor } = popularityLabel(name.popularity);
+  const { label: popLabelKey, color: popColor } = popularityLabel(name.popularity);
+  const popLabel = t(`popularity.${popLabelKey}`);
 
   const genderColor = {
     boy: 'text-blue-500',
@@ -70,7 +73,7 @@ export default function NameCard({ name, onLike, onDislike }) {
           <div className="flex items-center gap-1.5 mb-2">
             <span className="text-lg">{genderEmoji}</span>
             <span className={`text-xs font-semibold uppercase tracking-widest ${genderColor}`}>
-              {name.gender === 'neutral' ? 'Unisex' : name.gender === 'boy' ? 'Boy' : 'Girl'}
+              {t(`gender.${name.gender}`)}
             </span>
           </div>
 
@@ -80,7 +83,9 @@ export default function NameCard({ name, onLike, onDislike }) {
           </h1>
 
           {/* Origin */}
-          <p className="text-sm text-gray-400 font-medium mb-6">{name.origin} origin</p>
+          <p className="text-sm text-gray-400 font-medium mb-6">
+            {t(`origin.${name.origin}`)} {t('card.originSuffix')}
+          </p>
 
           {/* Divider */}
           <div className="h-px bg-gray-100 mb-5" />
@@ -88,7 +93,7 @@ export default function NameCard({ name, onLike, onDislike }) {
           {/* Meaning */}
           <div className="mb-5">
             <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-1">
-              Meaning
+              {t('card.meaning')}
             </p>
             <p className="text-gray-700 text-lg font-medium leading-snug">"{name.meaning}"</p>
           </div>
@@ -100,7 +105,7 @@ export default function NameCard({ name, onLike, onDislike }) {
                 key={s}
                 className="px-2 py-0.5 rounded-full bg-violet-50 text-violet-600 text-xs font-medium"
               >
-                {s}
+                {t(`style.${s}`)}
               </span>
             ))}
           </div>
@@ -109,16 +114,16 @@ export default function NameCard({ name, onLike, onDislike }) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-0.5">
-                Popularity
+                {t('card.popularity')}
               </p>
               <p className={`font-bold text-sm ${popColor}`}>
                 {popLabel}
                 <span className="text-gray-400 font-normal ml-1">
-                  #{name.popularity} ranked
+                  #{name.popularity} {t('card.ranked')}
                 </span>
               </p>
             </div>
-            <PopularityBar rank={name.popularity} />
+            <PopularityBar rank={name.popularity} label={t('card.popularityBar')} />
           </div>
         </div>
       </div>
@@ -126,8 +131,7 @@ export default function NameCard({ name, onLike, onDislike }) {
   );
 }
 
-function PopularityBar({ rank }) {
-  // Convert rank to a 0-100 score (lower rank = more popular)
+function PopularityBar({ rank, label }) {
   const score = Math.max(0, Math.min(100, 100 - (rank / 10)));
   return (
     <div className="flex flex-col items-end gap-1">
@@ -137,7 +141,7 @@ function PopularityBar({ rank }) {
           style={{ width: `${score}%` }}
         />
       </div>
-      <span className="text-xs text-gray-400">popularity</span>
+      <span className="text-xs text-gray-400">{label}</span>
     </div>
   );
 }

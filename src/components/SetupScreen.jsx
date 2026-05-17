@@ -1,28 +1,26 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ORIGINS, STYLES } from '../data/names';
+import { useLanguage } from '../i18n/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const GENDERS = [
-  { value: 'boy', label: 'Boy', emoji: '💙' },
-  { value: 'girl', label: 'Girl', emoji: '🩷' },
-  { value: 'any', label: 'Any', emoji: '✨' },
+  { value: 'boy', emoji: '💙' },
+  { value: 'girl', emoji: '🩷' },
+  { value: 'any', emoji: '✨' },
 ];
 
-const POPULARITY_OPTIONS = [
-  { value: 'any', label: 'Any' },
-  { value: 'Popular', label: 'Popular' },
-  { value: 'Uncommon', label: 'Uncommon' },
-  { value: 'Rare', label: 'Rare' },
-];
+const POPULARITY_OPTIONS = ['any', 'Popular', 'Uncommon', 'Rare'];
 
 const LENGTH_OPTIONS = [
-  { value: 'any', label: 'Any' },
-  { value: 'short', label: 'Short', hint: '≤4 letters' },
-  { value: 'medium', label: 'Medium', hint: '5–7 letters' },
-  { value: 'long', label: 'Long', hint: '8+ letters' },
+  { value: 'any' },
+  { value: 'short', hintKey: 'length.shortHint' },
+  { value: 'medium', hintKey: 'length.mediumHint' },
+  { value: 'long', hintKey: 'length.longHint' },
 ];
 
 export default function SetupScreen({ onStart }) {
+  const { t } = useLanguage();
   const [gender, setGender] = useState('any');
   const [selectedOrigins, setSelectedOrigins] = useState([]);
   const [selectedStyles, setSelectedStyles] = useState([]);
@@ -42,12 +40,15 @@ export default function SetupScreen({ onStart }) {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <div className="px-5 pt-10 pb-4 text-center">
-        <div className="text-5xl mb-2">👶</div>
+      <div className="px-5 pt-6 pb-4 relative text-center">
+        <div className="absolute top-4 right-5">
+          <LanguageSwitcher />
+        </div>
+        <div className="text-5xl mb-2 pt-4">👶</div>
         <h1 className="text-3xl font-bold text-gray-800 leading-tight">
-          Baby Name Swipe
+          {t('app.title')}
         </h1>
-        <p className="text-gray-500 mt-1 text-sm">Find the perfect name together</p>
+        <p className="text-gray-500 mt-1 text-sm">{t('app.tagline')}</p>
       </div>
 
       {/* Form */}
@@ -56,10 +57,10 @@ export default function SetupScreen({ onStart }) {
         {/* Gender */}
         <section>
           <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
-            Gender
+            {t('section.gender')}
           </h2>
           <div className="grid grid-cols-3 gap-2">
-            {GENDERS.map(({ value, label, emoji }) => (
+            {GENDERS.map(({ value, emoji }) => (
               <button
                 key={value}
                 onClick={() => setGender(value)}
@@ -70,7 +71,7 @@ export default function SetupScreen({ onStart }) {
                 }`}
               >
                 <span className="block text-xl mb-0.5">{emoji}</span>
-                {label}
+                {t(`gender.${value}`)}
               </button>
             ))}
           </div>
@@ -79,10 +80,10 @@ export default function SetupScreen({ onStart }) {
         {/* Style / Vibe */}
         <section>
           <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
-            Style / Vibe
+            {t('section.style')}
             {selectedStyles.length > 0 && (
               <span className="ml-2 text-violet-500 normal-case font-normal text-xs">
-                {selectedStyles.length} selected
+                {selectedStyles.length} {t('setup.selected')}
               </span>
             )}
           </h2>
@@ -97,22 +98,22 @@ export default function SetupScreen({ onStart }) {
                     : 'bg-white border-gray-200 text-gray-600'
                 }`}
               >
-                {style}
+                {t(`style.${style}`)}
               </button>
             ))}
           </div>
           {selectedStyles.length === 0 && (
-            <p className="text-xs text-gray-400 mt-2">Leave empty to show all styles</p>
+            <p className="text-xs text-gray-400 mt-2">{t('setup.leaveEmptyHint')}</p>
           )}
         </section>
 
         {/* Origin */}
         <section>
           <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
-            Origin
+            {t('section.origin')}
             {selectedOrigins.length > 0 && (
               <span className="ml-2 text-violet-500 normal-case font-normal text-xs">
-                {selectedOrigins.length} selected
+                {selectedOrigins.length} {t('setup.selected')}
               </span>
             )}
           </h2>
@@ -134,7 +135,7 @@ export default function SetupScreen({ onStart }) {
                     : 'bg-white border-gray-200 text-gray-600'
                 }`}
               >
-                {origin}
+                {t(`origin.${origin}`)}
               </button>
             ))}
           </div>
@@ -143,10 +144,10 @@ export default function SetupScreen({ onStart }) {
         {/* Popularity */}
         <section>
           <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
-            Popularity
+            {t('section.popularity')}
           </h2>
           <div className="grid grid-cols-4 gap-2">
-            {POPULARITY_OPTIONS.map(({ value, label }) => (
+            {POPULARITY_OPTIONS.map((value) => (
               <button
                 key={value}
                 onClick={() => setPopularity(value)}
@@ -156,7 +157,7 @@ export default function SetupScreen({ onStart }) {
                     : 'border-gray-200 bg-white text-gray-600'
                 }`}
               >
-                {label}
+                {t(`popularity.${value}`)}
               </button>
             ))}
           </div>
@@ -165,10 +166,10 @@ export default function SetupScreen({ onStart }) {
         {/* Length */}
         <section>
           <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
-            Name Length
+            {t('section.length')}
           </h2>
           <div className="grid grid-cols-4 gap-2">
-            {LENGTH_OPTIONS.map(({ value, label, hint }) => (
+            {LENGTH_OPTIONS.map(({ value, hintKey }) => (
               <button
                 key={value}
                 onClick={() => setLength(value)}
@@ -178,8 +179,10 @@ export default function SetupScreen({ onStart }) {
                     : 'border-gray-200 bg-white text-gray-600'
                 }`}
               >
-                {label}
-                {hint && <span className="block text-xs font-normal opacity-60">{hint}</span>}
+                {t(`length.${value}`)}
+                {hintKey && (
+                  <span className="block text-xs font-normal opacity-60">{t(hintKey)}</span>
+                )}
               </button>
             ))}
           </div>
@@ -193,7 +196,7 @@ export default function SetupScreen({ onStart }) {
           onClick={handleStart}
           className="w-full py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold text-lg shadow-lg shadow-violet-200"
         >
-          Start Swiping →
+          {t('setup.start')}
         </motion.button>
       </div>
     </div>

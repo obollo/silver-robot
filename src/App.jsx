@@ -3,6 +3,7 @@ import SetupScreen from './components/SetupScreen';
 import SwipeScreen from './components/SwipeScreen';
 import ResultsScreen from './components/ResultsScreen';
 import { filterNames } from './data/names';
+import { useLanguage } from './i18n/LanguageContext';
 import './index.css';
 
 const SCREENS = { setup: 'setup', swipe: 'swipe', results: 'results' };
@@ -94,18 +95,17 @@ export default function App() {
 }
 
 function NoNamesState({ onBack }) {
+  const { t } = useLanguage();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-8 text-center">
       <div className="text-5xl mb-4">🔍</div>
-      <h2 className="text-xl font-bold text-gray-800 mb-2">No names found</h2>
-      <p className="text-gray-500 mb-6 text-sm">
-        Your filters are too specific. Try removing some filters to see more names.
-      </p>
+      <h2 className="text-xl font-bold text-gray-800 mb-2">{t('noNames.title')}</h2>
+      <p className="text-gray-500 mb-6 text-sm">{t('noNames.desc')}</p>
       <button
         onClick={onBack}
         className="px-8 py-3 rounded-2xl bg-violet-500 text-white font-semibold"
       >
-        Adjust Filters
+        {t('noNames.adjust')}
       </button>
     </div>
   );
