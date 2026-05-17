@@ -54,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div className="max-w-md mx-auto min-h-dvh relative overflow-hidden">
+    <div className="max-w-md mx-auto h-dvh relative overflow-hidden">
       <AnimatePresence mode="wait" custom={direction}>
         {screen === SCREENS.setup && (
           <motion.div
