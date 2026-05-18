@@ -63,6 +63,8 @@ export const translations = {
 
     'swipe.namesLeft': 'names left',
     'swipe.viewResults': 'View results',
+    'swipe.undo': 'Undo',
+    'swipe.maybe': 'Maybe',
 
     'card.meaning': 'Meaning',
     'card.originSuffix': 'origin',
@@ -92,6 +94,8 @@ export const translations = {
     'results.noMatches': 'No matches yet 😅',
     'results.differentTaste': 'You and your partner have different taste — keep swiping!',
     'results.invalidCode': 'Invalid code. Ask your partner to share their code again.',
+    'results.myMaybe': 'Maybe',
+    'results.emptyMaybe': "You didn't save any names to maybe this round.",
     'results.emptyMessage': "You didn't like any names this round.",
     'results.tryAgain': 'Try swiping again',
     'results.changeFilters': 'Change Filters & Swipe Again',
@@ -159,6 +163,8 @@ export const translations = {
 
     'swipe.namesLeft': 'pozostało',
     'swipe.viewResults': 'Zobacz wyniki',
+    'swipe.undo': 'Cofnij',
+    'swipe.maybe': 'Może',
 
     'card.meaning': 'Znaczenie',
     'card.originSuffix': 'pochodzenie',
@@ -188,6 +194,8 @@ export const translations = {
     'results.noMatches': 'Brak dopasowań 😅',
     'results.differentTaste': 'Macie różne gusta — przeglądajcie dalej!',
     'results.invalidCode': 'Nieprawidłowy kod. Poproś partnera o ponowne udostępnienie.',
+    'results.myMaybe': 'Może',
+    'results.emptyMaybe': 'W tej rundzie nie zapisano żadnego imienia jako "może".',
     'results.emptyMessage': 'W tej rundzie nie polubiono żadnego imienia.',
     'results.tryAgain': 'Spróbuj jeszcze raz',
     'results.changeFilters': 'Zmień filtry i przeglądaj ponownie',
@@ -255,6 +263,8 @@ export const translations = {
 
     'swipe.namesLeft': 'Namen übrig',
     'swipe.viewResults': 'Ergebnisse anzeigen',
+    'swipe.undo': 'Rückgängig',
+    'swipe.maybe': 'Vielleicht',
 
     'card.meaning': 'Bedeutung',
     'card.originSuffix': 'Herkunft',
@@ -284,6 +294,8 @@ export const translations = {
     'results.noMatches': 'Noch keine Übereinstimmungen 😅',
     'results.differentTaste': 'Ihr habt unterschiedlichen Geschmack — wischt weiter!',
     'results.invalidCode': 'Ungültiger Code. Bitte deinen Partner, ihn erneut zu teilen.',
+    'results.myMaybe': 'Vielleicht',
+    'results.emptyMaybe': 'In dieser Runde hast du keine Namen als "vielleicht" gespeichert.',
     'results.emptyMessage': 'In dieser Runde hast du keine Namen gemocht.',
     'results.tryAgain': 'Nochmal wischen',
     'results.changeFilters': 'Filter ändern und neu wischen',

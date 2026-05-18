@@ -5,7 +5,7 @@ import names from '../data/names';
 import { useLanguage } from '../i18n/LanguageContext';
 import { translateMeaning } from '../i18n/meanings';
 
-export default function ResultsScreen({ likedNames, onBack, onRestart }) {
+export default function ResultsScreen({ likedNames, maybeNames = [], onBack, onRestart }) {
   const { t } = useLanguage();
   const [view, setView] = useState('mine');
   const [partnerCode, setPartnerCode] = useState('');
@@ -49,22 +49,30 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
         </div>
 
         {/* Tab bar */}
-        <div className="flex bg-gray-100 rounded-xl p-1">
+        <div className="flex bg-gray-100 rounded-xl p-1 gap-1">
           <button
             onClick={() => setView('mine')}
-            className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
               view === 'mine' ? 'bg-white shadow text-gray-800' : 'text-gray-400'
             }`}
           >
-            {t('results.myLikes')} ({likedNames.length})
+            ❤️ {likedNames.length}
+          </button>
+          <button
+            onClick={() => setView('maybe')}
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
+              view === 'maybe' ? 'bg-white shadow text-gray-800' : 'text-gray-400'
+            }`}
+          >
+            ⭐ {maybeNames.length}
           </button>
           <button
             onClick={() => setView('match')}
-            className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
               view === 'match' ? 'bg-white shadow text-gray-800' : 'text-gray-400'
             }`}
           >
-            {t('results.partnerMatch')} 🔗
+            🔗 {t('results.partnerMatch')}
           </button>
         </div>
       </div>
@@ -80,6 +88,9 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
               exit={{ opacity: 0, x: 10 }}
               transition={{ duration: 0.2 }}
             >
+              <p className="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-3">
+                {t('results.myLikes')} ({likedNames.length})
+              </p>
               {likedNames.length === 0 ? (
                 <EmptyState
                   emoji="💔"
@@ -91,6 +102,32 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
                 <div className="space-y-2.5">
                   {likedNames.map((n, i) => (
                     <NameListItem key={n.id} name={n} rank={i + 1} />
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          ) : view === 'maybe' ? (
+            <motion.div
+              key="maybe"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <p className="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-3">
+                {t('results.myMaybe')} ({maybeNames.length})
+              </p>
+              {maybeNames.length === 0 ? (
+                <EmptyState
+                  emoji="🤔"
+                  message={t('results.emptyMaybe')}
+                  action={t('results.tryAgain')}
+                  onAction={onRestart}
+                />
+              ) : (
+                <div className="space-y-2.5">
+                  {maybeNames.map((n, i) => (
+                    <NameListItem key={n.id} name={n} rank={i + 1} maybe />
                   ))}
                 </div>
               )}
@@ -184,7 +221,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
   );
 }
 
-function NameListItem({ name, rank, highlight }) {
+function NameListItem({ name, rank, highlight, maybe }) {
   const { t, lang } = useLanguage();
   const genderEmoji = { boy: '💙', girl: '🩷', neutral: '✨' }[name.gender];
 
@@ -196,6 +233,8 @@ function NameListItem({ name, rank, highlight }) {
       className={`flex items-center gap-3 rounded-2xl px-4 py-3.5 ${
         highlight
           ? 'bg-gradient-to-r from-violet-50 to-pink-50 border border-violet-200'
+          : maybe
+          ? 'bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200'
           : 'bg-white shadow-sm'
       }`}
     >
@@ -205,6 +244,7 @@ function NameListItem({ name, rank, highlight }) {
         <p className="text-xs text-gray-400 truncate">{t(`origin.${name.origin}`)} · {translateMeaning(name.meaning, lang)}</p>
       </div>
       {highlight && <span className="text-base">💕</span>}
+      {maybe && <span className="text-base">⭐</span>}
       <span className="text-xs text-gray-300 font-mono">#{rank}</span>
     </motion.div>
   );

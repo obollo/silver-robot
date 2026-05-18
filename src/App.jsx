@@ -44,6 +44,7 @@ function AppInner() {
   const [screen, setScreen] = useState(SCREENS.setup);
   const [filters, setFilters] = useState(null);
   const [likedNames, setLikedNames] = useState([]);
+  const [maybeNames, setMaybeNames] = useState([]);
 
   const filteredNames = useMemo(() => {
     if (!filters) return [];
@@ -53,11 +54,13 @@ function AppInner() {
   const handleStart = (newFilters) => {
     setFilters(newFilters);
     setLikedNames([]);
+    setMaybeNames([]);
     setScreen(SCREENS.swipe);
   };
 
-  const handleSwipeComplete = (liked) => {
+  const handleSwipeComplete = (liked, maybe) => {
     setLikedNames(liked);
+    setMaybeNames(maybe);
     setScreen(SCREENS.results);
   };
 
@@ -73,11 +76,13 @@ function AppInner() {
             onComplete={handleSwipeComplete}
             onBack={() => setScreen(SCREENS.setup)}
           />
+
         )
       )}
       {screen === SCREENS.results && (
         <ResultsScreen
           likedNames={likedNames}
+          maybeNames={maybeNames}
           onBack={() => setScreen(SCREENS.swipe)}
           onRestart={() => setScreen(SCREENS.setup)}
         />

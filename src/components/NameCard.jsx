@@ -5,12 +5,14 @@ import { translateMeaning } from '../i18n/meanings';
 
 const SWIPE_THRESHOLD = 100;
 
-export default function NameCard({ name, onLike, onDislike }) {
+export default function NameCard({ name, onLike, onDislike, onMaybe }) {
   const { t, lang } = useLanguage();
   const x = useMotionValue(0);
+  const y = useMotionValue(0);
   const rotate = useTransform(x, [-250, 250], [-18, 18]);
   const likeOpacity = useTransform(x, [20, SWIPE_THRESHOLD], [0, 1]);
   const dislikeOpacity = useTransform(x, [-SWIPE_THRESHOLD, -20], [1, 0]);
+  const maybeOpacity = useTransform(y, [-SWIPE_THRESHOLD, -20], [1, 0]);
 
   const { label: popLabelKey, color: popColor } = popularityLabel(name.popularity);
   const popLabel = t(`popularity.${popLabelKey}`);
@@ -24,20 +26,24 @@ export default function NameCard({ name, onLike, onDislike }) {
   const genderEmoji = { boy: '💙', girl: '🩷', neutral: '✨' }[name.gender];
 
   const handleDragEnd = (_, info) => {
-    if (info.offset.x > SWIPE_THRESHOLD) {
+    const { x: dx, y: dy } = info.offset;
+    if (dy < -SWIPE_THRESHOLD && Math.abs(dy) > Math.abs(dx)) {
+      animate(y, -600, { duration: 0.3 }).then(onMaybe);
+    } else if (dx > SWIPE_THRESHOLD) {
       animate(x, 600, { duration: 0.3 }).then(onLike);
-    } else if (info.offset.x < -SWIPE_THRESHOLD) {
+    } else if (dx < -SWIPE_THRESHOLD) {
       animate(x, -600, { duration: 0.3 }).then(onDislike);
     } else {
       animate(x, 0, { type: 'spring', stiffness: 300, damping: 25 });
+      animate(y, 0, { type: 'spring', stiffness: 300, damping: 25 });
     }
   };
 
   return (
     <motion.div
-      style={{ x, rotate }}
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
+      style={{ x, y, rotate }}
+      drag
+      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
       dragElastic={0.9}
       onDragEnd={handleDragEnd}
       className="w-full cursor-grab active:cursor-grabbing no-select"
@@ -54,7 +60,7 @@ export default function NameCard({ name, onLike, onDislike }) {
           }`}
         />
 
-        {/* Like / Dislike overlays */}
+        {/* Like / Dislike / Maybe overlays */}
         <motion.div
           style={{ opacity: likeOpacity }}
           className="absolute top-6 right-6 z-10 border-4 border-emerald-500 rounded-xl px-3 py-1 rotate-[-15deg]"
@@ -66,6 +72,12 @@ export default function NameCard({ name, onLike, onDislike }) {
           className="absolute top-6 left-6 z-10 border-4 border-red-400 rounded-xl px-3 py-1 rotate-[15deg]"
         >
           <span className="text-red-400 font-black text-2xl tracking-widest">NOPE</span>
+        </motion.div>
+        <motion.div
+          style={{ opacity: maybeOpacity }}
+          className="absolute top-6 left-1/2 -translate-x-1/2 z-10 border-4 border-amber-400 rounded-xl px-3 py-1"
+        >
+          <span className="text-amber-400 font-black text-2xl tracking-widest">MAYBE</span>
         </motion.div>
 
         {/* Card content */}
