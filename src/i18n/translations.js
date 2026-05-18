@@ -1,6 +1,6 @@
 export const LANGUAGES = [
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
   { code: 'pl', label: 'PL', flag: '🇵🇱' },
+  { code: 'en', label: 'EN', flag: '🇬🇧' },
   { code: 'de', label: 'DE', flag: '🇩🇪' },
 ];
 
@@ -102,11 +102,11 @@ export const translations = {
   },
 
   pl: {
-    'app.title': 'Wybór Imienia',
+    'app.title': 'Imię dla dziecka',
     'app.tagline': 'Znajdźcie idealne imię razem',
 
     'section.gender': 'Płeć',
-    'section.style': 'Styl / Klimat',
+    'section.style': 'Styl / Charakter',
     'section.origin': 'Pochodzenie',
     'section.popularity': 'Popularność',
     'section.length': 'Długość imienia',
@@ -119,7 +119,7 @@ export const translations = {
 
     'popularity.any': 'Dowolna',
     'popularity.Popular': 'Popularne',
-    'popularity.Uncommon': 'Mniej znane',
+    'popularity.Uncommon': 'Średnio popularne',
     'popularity.Rare': 'Rzadkie',
 
     'length.any': 'Dowolna',
@@ -133,10 +133,10 @@ export const translations = {
     'style.Classic': 'Klasyczne',
     'style.Modern': 'Nowoczesne',
     'style.Biblical': 'Biblijne',
-    'style.Nature': 'Naturalne',
+    'style.Nature': 'Natura',
     'style.Mythological': 'Mitologiczne',
     'style.Royal': 'Królewskie',
-    'style.Vintage': 'Vintage',
+    'style.Vintage': 'Retro',
 
     'origin.Any': 'Dowolne',
     'origin.Hebrew': 'Hebrajskie',
@@ -155,9 +155,9 @@ export const translations = {
 
     'setup.selected': 'wybrano',
     'setup.leaveEmptyHint': 'Zostaw puste, aby pokazać wszystkie style',
-    'setup.start': 'Zacznij przeglądanie →',
+    'setup.start': 'Zaczynamy →',
 
-    'swipe.namesLeft': 'imion pozostało',
+    'swipe.namesLeft': 'pozostało',
     'swipe.viewResults': 'Zobacz wyniki',
 
     'card.meaning': 'Znaczenie',
@@ -169,31 +169,31 @@ export const translations = {
     'done.title': 'Gotowe!',
     'done.swipedThrough': 'Przejrzano',
     'done.names': 'imion',
-    'done.andLiked': 'i polubiono',
+    'done.andLiked': 'a polubiono',
     'done.viewPicks': 'Zobacz wybrane',
     'done.startOver': 'Zacznij od nowa',
 
     'results.title': 'Twoje wybory',
-    'results.myLikes': 'Moje polubione',
+    'results.myLikes': 'Polubione',
     'results.partnerMatch': 'Dopasowanie z partnerem',
     'results.step1Title': 'Krok 1: Podziel się wyborem',
-    'results.step1Desc': 'Wyślij ten kod partnerowi, aby znaleźć wspólne wybory.',
+    'results.step1Desc': 'Wyślij ten kod partnerowi, aby znaleźć wspólne imiona.',
     'results.copy': 'Kopiuj',
     'results.step2Title': 'Krok 2: Wpisz kod partnera',
     'results.step2Desc': 'Wklej kod, którym podzielił się z Tobą partner.',
     'results.pasteCodePlaceholder': 'Wklej kod partnera tutaj…',
     'results.findMatches': 'Znajdź dopasowania ✨',
-    'results.match': 'dopasowanie',
-    'results.matches': 'dopasowania',
-    'results.noMatches': 'Jeszcze brak dopasowań 😅',
+    'results.match': 'wspólne imię',
+    'results.matches': 'wspólne imiona',
+    'results.noMatches': 'Brak dopasowań 😅',
     'results.differentTaste': 'Macie różne gusta — przeglądajcie dalej!',
     'results.invalidCode': 'Nieprawidłowy kod. Poproś partnera o ponowne udostępnienie.',
     'results.emptyMessage': 'W tej rundzie nie polubiono żadnego imienia.',
-    'results.tryAgain': 'Spróbuj ponownie',
+    'results.tryAgain': 'Spróbuj jeszcze raz',
     'results.changeFilters': 'Zmień filtry i przeglądaj ponownie',
 
     'noNames.title': 'Nie znaleziono imion',
-    'noNames.desc': 'Twoje filtry są zbyt szczegółowe. Spróbuj usunąć niektóre, aby zobaczyć więcej imion.',
+    'noNames.desc': 'Twoje filtry są zbyt szczegółowe. Usuń niektóre, aby zobaczyć więcej imion.',
     'noNames.adjust': 'Zmień filtry',
   },
 

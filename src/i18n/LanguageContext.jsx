@@ -7,12 +7,12 @@ function detectInitialLang() {
   try {
     const saved = localStorage.getItem('lang');
     if (saved && translations[saved]) return saved;
-    const browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    const browser = (navigator.language || 'pl').slice(0, 2).toLowerCase();
     if (translations[browser]) return browser;
   } catch {
     // localStorage might be unavailable (private mode)
   }
-  return 'en';
+  return 'pl';
 }
 
 export function LanguageProvider({ children }) {

@@ -1,11 +1,12 @@
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { popularityLabel } from '../data/names';
 import { useLanguage } from '../i18n/LanguageContext';
+import { translateMeaning } from '../i18n/meanings';
 
 const SWIPE_THRESHOLD = 100;
 
 export default function NameCard({ name, onLike, onDislike }) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-250, 250], [-18, 18]);
   const likeOpacity = useTransform(x, [20, SWIPE_THRESHOLD], [0, 1]);
@@ -95,7 +96,9 @@ export default function NameCard({ name, onLike, onDislike }) {
             <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-1">
               {t('card.meaning')}
             </p>
-            <p className="text-gray-700 text-lg font-medium leading-snug">"{name.meaning}"</p>
+            <p className="text-gray-700 text-lg font-medium leading-snug">
+              "{translateMeaning(name.meaning, lang)}"
+            </p>
           </div>
 
           {/* Style tags */}

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { encodeNames, decodeNames } from '../data/names';
 import names from '../data/names';
 import { useLanguage } from '../i18n/LanguageContext';
+import { translateMeaning } from '../i18n/meanings';
 
 export default function ResultsScreen({ likedNames, onBack, onRestart }) {
   const { t } = useLanguage();
@@ -184,7 +185,7 @@ export default function ResultsScreen({ likedNames, onBack, onRestart }) {
 }
 
 function NameListItem({ name, rank, highlight }) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const genderEmoji = { boy: '💙', girl: '🩷', neutral: '✨' }[name.gender];
 
   return (
@@ -201,7 +202,7 @@ function NameListItem({ name, rank, highlight }) {
       <span className="text-xl">{genderEmoji}</span>
       <div className="flex-1 min-w-0">
         <p className="font-bold text-gray-800">{name.name}</p>
-        <p className="text-xs text-gray-400 truncate">{t(`origin.${name.origin}`)} · {name.meaning}</p>
+        <p className="text-xs text-gray-400 truncate">{t(`origin.${name.origin}`)} · {translateMeaning(name.meaning, lang)}</p>
       </div>
       {highlight && <span className="text-base">💕</span>}
       <span className="text-xs text-gray-300 font-mono">#{rank}</span>
